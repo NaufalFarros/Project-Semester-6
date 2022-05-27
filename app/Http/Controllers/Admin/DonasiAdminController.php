@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\donasi;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DonasiAdminController extends Controller
 {
@@ -14,7 +17,8 @@ class DonasiAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.Donasi.ListDonasi');
+        $data = donasi::get();
+        return view('admin.Donasi.ListDonasi', $data);
     }
 
     /**
@@ -24,8 +28,8 @@ class DonasiAdminController extends Controller
      */
     public function create()
     {
-        return view('admin.Artikel.add_artikel');
-   }
+        return view('admin.Donasi.add_donasi');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +39,19 @@ class DonasiAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            DB::transaction(function() use($request){
+                $donate = new donasi();
+                $donate->fill($request->all());
+                $donate->is_actived = $request->has('is_active')?1:0;
+                $donate->save();
+            });
+
+            return redirect()->route('donate.index')->with(['success'=>'Berhasil menambahkan donasi']);
+        }catch (Exception $e){
+            report($e->getMessage());
+            return redirect()->back()->withErrors(['error'=>'Terjadi kesalahan'])->withInput();
+        }
     }
 
     /**
@@ -46,7 +62,10 @@ class DonasiAdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = donasi::select('id', $id)->first();
+
+        // halaman detail admin donasi
+        return view('', $data);
     }
 
     /**
@@ -57,7 +76,8 @@ class DonasiAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = donasi::select('id', $id)->first();
+        return view('admin.Donasi.edit_donasi', $data);
     }
 
     /**
@@ -69,7 +89,20 @@ class DonasiAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            DB::transaction(function() use($request, $id){
+                $donate = new donasi();
+                $donate->select('id', $id);
+                $donate->fill($request->all());
+                $donate->is_actived = $request->has('is_active')?1:0;
+                $donate->save();
+            });
+
+            return redirect()->route('donate.index')->with(['success'=>'Behasil memperbarui donasi']);
+        } catch (Exception $e){
+            report($e->getMessage());
+            return redirect()->back()->withErrors(['error'=>'Terjadi Error'])->withInput();
+        }
     }
 
     /**
@@ -80,6 +113,10 @@ class DonasiAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $donate = new donasi();
+        $donate->select('id', $id);
+        $donate->delete();
+
+        return redirect()->route('donate.index')->with(['success'=>'Berhasil menghapus donasi']);
     }
 }
