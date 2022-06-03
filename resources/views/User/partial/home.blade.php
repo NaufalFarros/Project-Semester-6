@@ -121,7 +121,7 @@
         <section class="quick-links">
             <div>
                 <h4>Quick Links</h4>
-                <button class="rounded-pill btn-show-details">Show all</button>
+                <!-- <button class="rounded-pill btn-show-details">Show all</button> -->
             </div>
             <div class="link-wrapper">
                 <a href="" class="card-list">
@@ -129,17 +129,17 @@
                     <p class="title">Home</p>
                     <p class="view-details">View Details</p>
                 </a>
-                <a href="" class="card-list">
+                <a href="{{ url('about') }}" class="card-list">
                     <i class="fa-solid fa-address-card donate-icon"></i>
                     <p class="title">About Us</p>
                     <p class="view-details">View Details</p>
                 </a>
-                <a href="" class="card-list">
+                <a href="{{ url('artikel') }}" class="card-list">
                     <i class="fa-solid fa-book donate-icon"></i>
                     <p class="title">Artikel</p>
                     <p class="view-details">View Details</p>
                 </a>
-                <a href="" class="card-list">
+                <a href="{{ url('donate') }}" class="card-list">
                     <i class="fas fa-hand-holding-usd donate-icon"></i>
                     <p class="title">Donasi</p>
                     <p class="view-details">View Details</p>
@@ -198,7 +198,7 @@
 
         <section class="event">
             <h4>Donasi</h4>
-            <a href="{{ url('danate') }}"><button class="rounded-pill btn-show-details">Show all</button></a>
+            <a href="{{ url('donate') }}"><button class="rounded-pill btn-show-details">Show all</button></a>
             <section><div class="progress-bar"></div>
               <div class="container">
                   <div class="row align-items-start">
