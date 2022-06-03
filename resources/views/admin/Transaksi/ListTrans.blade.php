@@ -126,16 +126,7 @@
                                         </tr>
                                         @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Judul</th>
-                                        <th>Nama</th>
-                                        <th>Jumlah</th>
-                                        <th>Foto Bukti</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfoot>
+                                
                             </table>
                         </div>
                         <!-- /.card-body -->
