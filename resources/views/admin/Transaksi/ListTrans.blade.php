@@ -55,13 +55,13 @@
 
                         <div class="card-body">
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
 
                                 <a href="#" class="btn btn-primary my-3"><i
                                         class="fas fa-info"></i> Tambah Data Transaksi</a>
 
 
-                            </div>
+                            </div> -->
 
 
 
@@ -126,16 +126,7 @@
                                         </tr>
                                         @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Judul</th>
-                                        <th>Nama</th>
-                                        <th>Jumlah</th>
-                                        <th>Foto Bukti</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfoot>
+                                
                             </table>
                         </div>
                         <!-- /.card-body -->
